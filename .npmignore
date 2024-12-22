@@ -1,0 +1,14 @@
+.DS_Store
+
+node_modules/
+src/
+tmp/
+
+.editorconfig
+.gitignore
+.npmignore
+.npmrc
+biome.json
+build.config.ts
+pnpm-lock.yaml
+tsconfig.json

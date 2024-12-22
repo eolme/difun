@@ -1,0 +1,115 @@
+{
+  "name": "difun",
+  "version": "1.0.1",
+  "description": "The easiest way to DI",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eolme/difun.git"
+  },
+  "bugs": "https://github.com/eolme/difun/issues",
+  "homepage": "https://github.com/eolme/difun",
+  "author": {
+    "name": "Anton Petrov",
+    "email": "im@petrov.engineer",
+    "url": "https://petrov.engineer"
+  },
+  "keywords": [
+    "di",
+    "dependency injection",
+    "dependency",
+    "injection",
+    "ioc",
+    "container",
+    "scope"
+  ],
+  "type": "module",
+  "main": "./lib/client.cjs",
+  "exports": {
+    "./lib/server": {
+      "types": "./lib/server.d.ts",
+      "import": "./lib/server.mjs",
+      "require": "./lib/server.cjs",
+      "default": "./lib/server.mjs"
+    },
+    "./lib/client": {
+      "types": "./lib/client.d.ts",
+      "import": "./lib/client.mjs",
+      "require": "./lib/client.cjs",
+      "default": "./lib/client.mjs"
+    },
+    ".": {
+      "types": "./lib/client.d.ts",
+      "node": {
+        "types": "./lib/server.d.ts",
+        "import": "./lib/server.mjs",
+        "require": "./lib/server.cjs",
+        "default": "./lib/server.mjs"
+      },
+      "deno": {
+        "types": "./lib/server.d.ts",
+        "import": "./lib/server.mjs",
+        "require": "./lib/server.cjs",
+        "default": "./lib/server.mjs"
+      },
+      "edge-light": {
+        "types": "./lib/server.d.ts",
+        "import": "./lib/server.mjs",
+        "require": "./lib/server.cjs",
+        "default": "./lib/server.mjs"
+      },
+      "edge-routine": {
+        "types": "./lib/server.d.ts",
+        "import": "./lib/server.mjs",
+        "require": "./lib/server.cjs",
+        "default": "./lib/server.mjs"
+      },
+      "workerd": {
+        "types": "./lib/server.d.ts",
+        "import": "./lib/server.mjs",
+        "require": "./lib/server.cjs",
+        "default": "./lib/server.mjs"
+      },
+      "netlify": {
+        "types": "./lib/server.d.ts",
+        "import": "./lib/server.mjs",
+        "require": "./lib/server.cjs",
+        "default": "./lib/server.mjs"
+      },
+      "import": "./lib/client.mjs",
+      "require": "./lib/client.cjs",
+      "default": "./lib/client.mjs"
+    }
+  },
+  "module": "./lib/client.mjs",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build": "unbuild",
+    "bundle": "run-p bundle:*",
+    "bundle:client-cjs-cjs": "esbuild lib/client.cjs --bundle --minify --tree-shaking=true --format=cjs --platform=browser --define:process.env.NODE_ENV=\\\"production\\\" --outfile=tmp/client-cjs.cjs",
+    "bundle:client-cjs-esm": "esbuild lib/client.cjs --bundle --minify --tree-shaking=true --format=esm --platform=browser --define:process.env.NODE_ENV=\\\"production\\\" --outfile=tmp/client-cjs.mjs",
+    "bundle:client-esm-cjs": "esbuild lib/client.mjs --bundle --minify --tree-shaking=true --format=cjs --platform=browser --define:process.env.NODE_ENV=\\\"production\\\" --outfile=tmp/client-esm.cjs",
+    "bundle:client-esm-esm": "esbuild lib/client.mjs --bundle --minify --tree-shaking=true --format=esm --platform=browser --define:process.env.NODE_ENV=\\\"production\\\" --outfile=tmp/client-esm.mjs",
+    "bundle:server-cjs-cjs": "esbuild lib/server.cjs --bundle --minify --tree-shaking=true --format=cjs --platform=node --define:process.env.NODE_ENV=\\\"production\\\" --external:\"node:async_hooks\" --outfile=tmp/server-cjs.cjs",
+    "bundle:server-cjs-esm": "esbuild lib/server.cjs --bundle --minify --tree-shaking=true --format=esm --platform=node --define:process.env.NODE_ENV=\\\"production\\\" --external:\"node:async_hooks\" --outfile=tmp/server-cjs.mjs",
+    "bundle:server-esm-cjs": "esbuild lib/server.mjs --bundle --minify --tree-shaking=true --format=cjs --platform=node --define:process.env.NODE_ENV=\\\"production\\\" --external:\"node:async_hooks\" --outfile=tmp/server-esm.cjs",
+    "bundle:server-esm-esm": "esbuild lib/server.mjs --bundle --minify --tree-shaking=true --format=esm --platform=node --define:process.env.NODE_ENV=\\\"production\\\" --external:\"node:async_hooks\" --outfile=tmp/server-esm.mjs",
+    "format-package": "format-package -w",
+    "prepack": "unbuild"
+  },
+  "esnext": "./lib/client.mjs",
+  "packageManager": "pnpm@9.12.3",
+  "types": "./lib/client.d.ts",
+  "devDependencies": {
+    "@biomejs/biome": "1.9.4",
+    "@types/node": "^22.10.2",
+    "esbuild": "^0.24.2",
+    "format-package": "^7.0.0",
+    "npm-run-all": "^4.1.5",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "unbuild": "^3.0.1"
+  }
+}
